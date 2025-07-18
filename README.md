@@ -12,4 +12,4 @@ Example: Doesn’t include content from elements styled with display: none
 
 
 implementation image:
-C:\Users\Dalal\Desktop\Employee Managment\screencapture-127-0-0-1-5500-index-html-2025-07-18-20_03_04.png
+images\screencapture-127-0-0-1-5500-index-html-2025-07-18-20_03_04.png
