@@ -1,112 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Management Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Employee Management Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Employee Management</h1>
-            <div class="stats">
-                <div class="stat-card active">
-                    <i class="fas fa-users"></i>
-                    <div>
-                        <div class="stat-title">Active Employees</div>
-                        <div class="stat-value" id="active-count"></div>
-                    </div>
-                </div>
-                <div class="stat-card trash">
-                    <i class="fas fa-trash"></i>
-                    <div>
-                        <div class="stat-title">In Trash</div>
-                        <div class="stat-value" id="trash-count"></div>
-                    </div>
-                </div>
-            </div>
-        </header>
+  <div class="container">
+    <header>
+      <h1>Employee Management</h1>
+      <div class="stats">
+        <div class="stat-card active">
+          <i class="fas fa-users"></i>
+          <div>
+            <div class="stat-title">Active Employees</div>
+            <div class="stat-value" id="active-count"></div>
+          </div>
+        </div>
+        <div class="stat-card trash">
+          <i class="fas fa-trash"></i>
+          <div>
+            <div class="stat-title">In Trash</div>
+            <div class="stat-value" id="trash-count"></div>
+          </div>
+        </div>
+      </div>
+    </header>
 
-        <section class="form-container">
-            <h2 class="form-title">Add New Employee</h2>
-            <form id="employee-form">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" placeholder="Mohammed Ali">
-                        <span class="error-message" id="name-error"></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="role">Role</label>
-                        <input type="text" id="role" name="role" placeholder="Software Developer">
-                        <span class="error-message" id="role-error"></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="status">Status</label>
-                        <select id="status" name="status">
-                            <option value="">Select Status</option>
-                            <option value="Active">Active</option>
-                            <option value="On Leave">On Leave</option>
-                            <option value="Terminated">Terminated</option>
-                        </select>
-                        <span class="error-message" id="status-error"></span>
-                    </div>
-                </div>
-                <button id="submit-btn" class="btn btn-primary">
-                    <i class="fas fa-plus"></i> Add Employee
-                </button>
-            </form>
-        </section>
+    <section class="form-container">
+      <h2 class="form-title">Add New Employee</h2>
+      <form id="employee-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Mohammed Ali" />
+            <span class="error-message" id="name-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="role">Role</label>
+            <input type="text" id="role" name="role" placeholder="Software Developer" />
+            <span class="error-message" id="role-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select id="status" name="status">
+              <option value="">Select Status</option>
+              <option value="Active">Active</option>
+              <option value="On Leave">On Leave</option>
+              <option value="Terminated">Terminated</option>
+            </select>
+            <span class="error-message" id="status-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="salary">Salary (Riyal)</label>
+            <input type="number" id="salary" name="salary" placeholder="50000" />
+            <span class="error-message" id="salary-error"></span>
+          </div>
+        </div>
+        <button id="submit-btn" class="btn btn-primary">
+          <i class="fas fa-plus"></i> Add Employee
+        </button>
+      </form>
+    </section>
 
-        <section class="employees-section">
-            <div class="section-title">
-                <h2>Employee List</h2>
-                <button id="toggle-trash" class="btn btn-secondary">
-                    <i class="fas fa-trash"></i> Show Trash
-                </button>
-            </div>
-            <div class="table-container">
-                <table id="employees-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Role</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                      
-                    </tbody>
-                </table>
-            </div>
-        </section>
+    <section class="filters">
+      <input type="text" id="search-name" placeholder="Search employee by name" />
+      <input type="text" id="filter-name" placeholder="Search by name" />
+      <input type="text" id="filter-role" placeholder="Search by role" />
+      <input type="number" id="salary-min" placeholder="Min salary" />
+      <input type="number" id="salary-max" placeholder="Max salary" />
+      <select id="filter-status">
+        <option value="">All Status</option>
+        <option value="Active">Active</option>
+        <option value="On Leave">On Leave</option>
+        <option value="Terminated">Terminated</option>
+      </select>
+      <button id="apply-filters">Apply Filters</button>
+      <button id="delete-low-salary">Delete Salary ≤ 20000</button>
+    </section>
 
-        <section class="trash-section" id="trash-section">
-            <div class="section-title">
-                <h2>Trash Bin</h2>
-            </div>
-            <div class="table-container">
-                <table id="trash-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Role</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-    </div>
+    <section class="payroll-summary">
+      Total Payroll: <span id="total-payroll">0 R</span>
+    </section>
 
-  <script src="./script.js"></script>
+    <section class="employees-section">
+      <div class="section-title">
+        <h2>Employee List</h2>
+        <button id="toggle-trash" class="btn btn-secondary">
+          <i class="fas fa-trash"></i> Show Trash
+        </button>
+      </div>
+      <div class="table-container">
+        <table id="employees-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Role</th>
+              <th>Status</th>
+              <th>Salary</th>
+              <th>Bonus</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="trash-section" id="trash-section">
+      <div class="section-title">
+        <h2>Trash Bin</h2>
+      </div>
+      <div class="table-container">
+        <table id="trash-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Role</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
